@@ -57,9 +57,9 @@ module.exports = function (content) {
     // Append a snippet that loads the template into the cache, and exports the path.
     return contentWithVar + ";\n" + 
         "var path = '"+jsesc(filePath)+"';\n" +
-        (requireAngular ? "var angular = require('angular');\n" : "window.") +
+        (requireAngular ? "import angular from 'angular';\n" : "window.") +
         "angular.module('" + ngModule + "').run(['$templateCache', function(c) { c.put(path, _module_exports) }]);\n" +
-        "module.exports = path;";
+        "export default path;";
 
     function getAndInterpolateOption(optionKey, def) {
         return options[optionKey]
